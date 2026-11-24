@@ -55,6 +55,7 @@ fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
 #[no_mangle]
 pub extern "C" fn octane_register() {
     octane::log("duotone-wasm: registering");
+    octane::set_plugin_name("Duotone (WASM)");   // shown in the Plugins menu
     octane::register_effect(MANIFEST, SHADER);
     octane::register_command("Build Solid Grid", "build_grid");
     octane::register_command("Stagger Selected (diagonal)", "stagger_selected");

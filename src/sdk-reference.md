@@ -6,6 +6,7 @@ pixels (top-left origin); colours are rgba `0..1`.
 ```rust
 // ── registration (call from octane_register) ─────────────────────────────
 log(msg)
+set_plugin_name(name)          // display name in the Plugins menu (else stem is prettified)
 register_effect(manifest_ron, wgsl)
 register_command(name, export_fn)
 register_importer(name, &extensions, export_fn)

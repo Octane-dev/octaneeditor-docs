@@ -50,11 +50,18 @@ use octane_plugin_sdk as octane;
 #[no_mangle]
 pub extern "C" fn octane_register() {
     octane::log("mything loading");
+    octane::set_plugin_name("My Thing");                           // Plugins-menu name
     octane::register_effect(MANIFEST, SHADER);                     // effect
     octane::register_command("Build Solid Grid", "build_grid");    // command
     octane::register_importer("My Format (.myf)", &["myf"], "import_myf"); // importer
 }
 ```
+
+> **Plugins menu naming.** `set_plugin_name` sets the label shown in the Plugins
+> menu. If you omit it, the host prettifies the `.wasm` file stem instead
+> (`duotone_wasm` → "Duotone WASM"). A plugin with several commands gets its own
+> `Plugin ▸` submenu; a single command shows flat as `Plugin: Command`.
+> (Requires SDK 0.1.3+.)
 
 > The SDK compiles on non-wasm targets too (all host calls become no-ops), so
 > `cargo check` on your dev machine works for IDE/autocomplete.
