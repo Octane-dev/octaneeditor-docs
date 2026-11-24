@@ -1,0 +1,30 @@
+name: Build example plugins
+
+# Guardrail: build every example plugin against the PUBLISHED octane-plugin-sdk
+# (examples/*/Cargo.toml use `octane-plugin-sdk = "0.1"`). If the crate is bumped
+# and an example falls behind — or the published crate is broken — this goes red.
+
+on:
+  push:
+    paths:
+      - "examples/**"
+      - ".github/workflows/examples.yml"
+  pull_request:
+    paths:
+      - "examples/**"
+      - ".github/workflows/examples.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install wasm32 target
+        run: rustup target add wasm32-unknown-unknown
+      - name: Build duotone-wasm
+        working-directory: examples/wasm-plugins/duotone-wasm
+        run: cargo build --target wasm32-unknown-unknown --release
+      - name: Build pz-import
+        working-directory: examples/wasm-plugins/pz-import
+        run: cargo build --target wasm32-unknown-unknown --release
