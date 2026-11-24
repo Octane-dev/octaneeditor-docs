@@ -5,6 +5,10 @@ depends on the **`octane-plugin-sdk`** crate and exports `octane_register()`.
 Unlike a native DLL, it **cannot crash the host or escape the sandbox** — it only
 reaches the host functions the SDK exposes.
 
+> **Not using Rust?** The SDK is just a wrapper over a language-neutral WASM ABI —
+> C, Zig, AssemblyScript, TinyGo, etc. can write plugins too. See
+> [Other languages (raw ABI)](./raw-abi.md).
+
 ## Project setup
 
 `Cargo.toml`:
