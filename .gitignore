@@ -1,0 +1,6 @@
+# mdBook output
+book/
+
+# Rust build artifacts from the example plugins
+target/
+**/target/

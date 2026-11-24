@@ -1,0 +1,28 @@
+// Duotone — a data-driven effect plugin (Track A).
+//
+// Drop this folder into your plugins dir to add a new effect with no recompile:
+//   Windows: %APPDATA%\OctaneEditor\plugins\duotone\
+// It appears in the effect list (Color category) on next launch, with a
+// generated FX-panel UI, keyframable params, and save/load — just like a
+// built-in effect.
+//
+// Parameters pack ONE vec4 per entry, in order, into the shader's
+// `data: array<vec4<f32>, 6>` uniform — param N is `u.data[N]`. Max 6 params.
+(
+    id:       "duotone",        // stable, unique id (also the WGSL shader id)
+    name:     "Duotone",        // shown in menus
+    category: "color",          // blur|color|stylize|generate|distort|transition|motion|time
+    icon:     "levels",         // blur|levels|hue|tint|shadow|glow
+
+    params: [
+        (id: "shadow",    label: "Shadow Color",    kind: Color(default: (0.10, 0.02, 0.22, 1.0))),
+        (id: "highlight", label: "Highlight Color", kind: Color(default: (1.00, 0.86, 0.30, 1.0))),
+        (id: "amount",    label: "Amount",          kind: Percent(default: 1.0, min: 0.0, max: 1.0)),
+    ],
+
+    // One full-screen pass: sample buffer 0, write buffer 1. Chain more passes by
+    // listing more (src, dst) pairs (they share the shader + packed params).
+    passes: [ (src: 0, dst: 1) ],
+
+    // Optional: shader filename (default "effect.wgsl"), buffers (default 2).
+)

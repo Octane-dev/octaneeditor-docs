@@ -1,0 +1,18 @@
+[package]
+name    = "duotone-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+octane-plugin-sdk = "0.1"
+
+[profile.release]
+opt-level = "s"
+lto       = true
+
+# Detach from the main workspace so `cargo build` at the repo root ignores this
+# crate — it's built explicitly for wasm32 (see the README).
+[workspace]

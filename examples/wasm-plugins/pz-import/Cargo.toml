@@ -1,0 +1,20 @@
+[package]
+name    = "pz-import"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+octane-plugin-sdk = "0.1"
+# Pure-Rust gzip (miniz_oxide backend) so it compiles to wasm32 — no C toolchain.
+flate2     = { version = "1", default-features = false, features = ["rust_backend"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto       = true
+
+# Detached from the main workspace — built explicitly for wasm32.
+[workspace]

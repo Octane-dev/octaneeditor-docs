@@ -1,0 +1,21 @@
+[book]
+title = "OctaneEditor Plugin Handbook"
+authors = ["Octane"]
+description = "Build effects, commands, and importers for OctaneEditor."
+language = "en"
+src = "src"
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+smart-punctuation = true
+# TODO: set to your public docs repo so the "edit / source" link works.
+git-repository-url = "https://github.com/Octane-dev/octaneeditor-docs"
+edit-url-template = "https://github.com/Octane-dev/octaneeditor-docs/edit/main/{path}"
+
+[output.html.fold]
+enable = true
+level = 1
+
+[output.html.search]
+enable = true
